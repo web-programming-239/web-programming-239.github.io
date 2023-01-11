@@ -46,7 +46,7 @@ function App() {
                         <p>Мы с самого начала расскажем про то, как работает интернет, что такое сайт, из чего он состоит и как написать свой собственный</p>
                     <Button variant={"dark"} size={"lg"} className={"p-2 mb-3 mt-2"}
                             style={{width: "10rem"}} href={"https://t.me/+wFkOkMwNQrc4MzMy"}>Интересно</Button>
-                    <p className={"mb-2 text-muted"}>Начало ~10 января</p>
+                    <p className={"mb-2 text-muted"}>Начало 13 января</p>
                 </Container>
 
                 <Container className={"m-1 mt-5 mb-5 bg-white pt-3 pb-3 rounded-4"}>
