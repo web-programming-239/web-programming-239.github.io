@@ -4,7 +4,7 @@ import Themes from "./Themes";
 function CoursePlan(props) {
     return (
         <Container>
-            <h2 className={"mb-1"}>{props.course}</h2>
+            <h4 className={"mb-1"}>{props.course}</h4>
             <p className={"text-muted mb-3"}>{props.subtitle}</p>
             <Accordion className={"mt-3 mb-3"}>
                 {props.themes.map((el, index) =>
