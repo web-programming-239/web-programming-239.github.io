@@ -3,7 +3,7 @@ import Themes from "./Themes";
 
 function CoursePlan(props) {
     return (
-        <Container>
+        <Container className={`bg-white ${props.roundbox} rounded-top p-4 m-0`}>
             <h4 className={"mb-1"}>{props.course}</h4>
             <p className={"text-muted mb-3"}>{props.subtitle}</p>
             <Accordion className={"mt-3 mb-3"}>

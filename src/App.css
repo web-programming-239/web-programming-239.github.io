@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: #efefef !important;
+}
+
+.IconArrowRightShort {
+  background-color: green;
+}
+
+.IconArrowRightShort:hover {
+  color: red;
+}

@@ -11,7 +11,6 @@
     "force-graph": "^1.42.13",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
-    "react-d3-graph": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-force-graph-2d": "^1.23.11",
     "react-scripts": "5.0.1",
