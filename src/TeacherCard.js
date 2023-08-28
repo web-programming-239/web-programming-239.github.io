@@ -4,7 +4,7 @@ import React from "react";
 
 function TeacherCard(props) {
     return (
-        <Card className={"p-4 m-auto mb-3 mt-3 text-start rounded-4"} style={{width: "18rem"}}>
+        <Card className={"p-4 m-auto mb-3 mt-3 text-start rounded-3"} style={{width: "20rem"}}>
             <Row>
                 <Col>
                 <Card.Title>{props.name[0]}</Card.Title>

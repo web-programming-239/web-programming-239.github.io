@@ -1,14 +1,8 @@
 import TeacherCard from "./TeacherCard";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import CoursePlan from "./CoursePlan";
-import {Button, Container, Row, Tab, Tabs, Image, Col} from "react-bootstrap";
-import IconJava from "./Icons/JavaIcon";
-import IconBxlPython from "./Icons/PythonIcon";
+import {Container, Row, Col} from "react-bootstrap";
 import TelegramIcon from "./Icons/TelegramIcon";
 import GItIcon from "./Icons/GitIcon";
-import IconArrowReturnRight from "./Icons/ArrowIcon";
-import IconArrowUpRightSquareFill from "./Icons/ArrowIcon";
-import IconInfoCircle from "./Icons/ArrowIcon";
 import ArrowIcon from "./Icons/ArrowIcon";
 
 import './App.css';
@@ -45,7 +39,7 @@ function App() {
                 </Container>
                 <Container className={"m-1 mt-5 mb-5 pt-3 pb-3 rounded-4"}>
                     <h2 className={"mb-4 text-start"}>Кто будет вести курс?</h2>
-                    <Row className={"m-auto"} style={{maxWidth: "60rem"}}>
+                    <Row className={"m-auto"} style={{maxWidth: "70rem"}}>
                         <TeacherCard
                             name={["Матвей","Гуров"]}
                             subtitle={"14-5"}

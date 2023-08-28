@@ -97,17 +97,17 @@ function BottomTabs() {
                                     roundbox = {"rounded-start"}/>
                     </Tab.Pane>
                 </Tab.Content>
-                <Nav fill variant="underline" className="justify-content-center p-0 h4">
-                    <Nav.Item onClick={() => handleClick(false)} className={
+                <Nav fill className="justify-content-center p-0 h4">
+                    <Nav.Item onFocus={() => handleClick(false)}
+                              className={
                         `${(isFirst ? "bg-white rounded-bottom" : "")}`
                     }>
                         <Nav.Link eventKey="first" >
                             <JavaIcon color={isFirst ? ACTIVE_COLOR: INACTIVE_COLOR}/>
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item onClick={() => handleClick(true)} className={
-                        (!isFirst ? "bg-white rounded-bottom" : "")
-                    }>
+                    <Nav.Item onFocus={() => handleClick(true)} className={
+                        (!isFirst ? "bg-white rounded-bottom" : "")}>
                         <Nav.Link eventKey="second" >
                             <PythonIcon color={!isFirst ? ACTIVE_COLOR: INACTIVE_COLOR}/>
                         </Nav.Link>
