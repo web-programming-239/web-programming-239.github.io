@@ -81,7 +81,7 @@ function BottomTabs() {
     }
 
     return (
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container transition={false} id="left-tabs-example" defaultActiveKey="first">
             <Row>
                 <Tab.Content className={"p-0"}>
                     <Tab.Pane eventKey="first">

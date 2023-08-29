@@ -3,8 +3,8 @@ function IconJava(props) {
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 512.000000 512.000000"
              fill={props.color}
-             height="2em"
-             width="2em">
+             height="1.44em"
+             width="1.44em">
 
             <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
                fill={props.color} stroke="none">

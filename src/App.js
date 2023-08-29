@@ -28,7 +28,7 @@ function App() {
                         <Col className={"text-center"}>
                             <a  href={"http://t.me/+fNRp_Y1MoXE3MjUy"}>
                             <ArrowIcon style={{height: "8rem", width: "8rem"}}/></a>
-                            <p className={"mb-2 text-muted"}>Начало 9 сентября</p>
+                            <p className={"mb-2 text-muted"}>Начало 16 сентября</p>
                         </Col>
                     </Row>
                 </Container>
@@ -43,7 +43,7 @@ function App() {
                         <TeacherCard
                             name={["Матвей","Гуров"]}
                             subtitle={"14-5"}
-                            description={"Учусь в ИТМО, стажёр в Яндексе"}
+                            description={["Fullstack-разработчик в DosFlores","КТ ИТМО"]}
                             links={[
                                 {title: "Telegram", link: "https://t.me/obomba", icon: TelegramIcon},
                                 {title: "Github", link: "https://github.com/matvik22000", icon: GItIcon}
@@ -52,16 +52,16 @@ function App() {
                         <TeacherCard
                             name={["Александр", "Крестьянинов"]}
                             subtitle={"14-5"}
-                            description={"Учусь на КТ, написал сканнер"}
+                            description={["Backend-разработчик в Ditar", "ПМИ СПбГЭУ"]}
                             links={[
-                                {title: "Telegram", link: "https://t.me/medvezhonokok", icon: TelegramIcon},
-                                {title: "Github", link: "https://github.com/medvezhonokok", icon: GItIcon}
+                                {title: "Telegram", link: "https://t.me/AleksanderRefresher", icon: TelegramIcon},
+                                {title: "Github", link: "https://github.com/hellagod", icon: GItIcon}
                             ]}
                         />
                         <TeacherCard
                             name={["Эльвира","Минько"]}
                             subtitle={"14-6 "}
-                            description={"Учусь в итмо на КТ на стипендии"}
+                            description={["Backend-разработчик в Видком","КТ ИТМО "]}
                             links={[
                                 {title: "Telegram", link: "https://t.me/elvmin", icon: TelegramIcon},
                             ]}
