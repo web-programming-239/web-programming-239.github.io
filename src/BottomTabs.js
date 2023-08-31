@@ -1,4 +1,4 @@
-import {Tab, Row, Col, Nav} from "react-bootstrap";
+import {Tab, Row, Nav} from "react-bootstrap";
 import JavaIcon from "./Icons/JavaIcon";
 import PythonIcon from "./Icons/PythonIcon";
 import CoursePlan from "./CoursePlan";

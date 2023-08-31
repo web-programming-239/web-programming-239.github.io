@@ -1,5 +1,4 @@
 import {Card, Col, Row} from "react-bootstrap";
-import IconBxlTelegram from "./Icons/TelegramIcon";
 import React from "react";
 
 function TeacherCard(props) {
