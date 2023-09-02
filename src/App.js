@@ -25,6 +25,7 @@ function App() {
                                 как написать свой собственный</p>
                         </Col>
                         <Col className={"text-center"}>
+                            <p className={"mb-2 text-muted"}>Беседа в телеграм:</p>
                             <a  href={"http://t.me/+fNRp_Y1MoXE3MjUy"}>
                             <ArrowIcon style={{height: "8rem", width: "8rem"}}/></a>
                             <p className={"mb-2 text-muted"}>Начало 16 сентября</p>
