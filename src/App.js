@@ -28,7 +28,7 @@ function App() {
                             <p className={"mb-2 text-muted"}>Беседа в телеграм:</p>
                             <a  href={"http://t.me/+fNRp_Y1MoXE3MjUy"}>
                             <ArrowIcon style={{height: "8rem", width: "8rem"}}/></a>
-                            <p className={"mb-2 text-muted"}>Начало 16 сентября</p>
+                            <p className={"mb-2 text-muted"}>Начало 19 сентября</p>
                         </Col>
                     </Row>
                 </Container>
@@ -42,8 +42,8 @@ function App() {
                     <Row className={"m-auto"} style={{maxWidth: "70rem"}}>
                         <TeacherCard
                             name={["Матвей","Гуров"]}
-                            subtitle={"14-5"}
-                            description={["Fullstack-разработчик в DosFlores","КТ ИТМО"]}
+                            subtitle={"15-5"}
+                            description={["Backend-разработчик в Yandex","КТ ИТМО"]}
                             links={[
                                 {title: "Telegram", link: "https://t.me/obomba", icon: TelegramIcon},
                                 {title: "Github", link: "https://github.com/matvik22000", icon: GItIcon}
@@ -51,7 +51,7 @@ function App() {
                         />
                         <TeacherCard
                             name={["Александр", "Крестьянинов"]}
-                            subtitle={"14-5"}
+                            subtitle={"15-5"}
                             description={["Backend-разработчик в Ditar", "ПМИ СПбГЭУ"]}
                             links={[
                                 {title: "Telegram", link: "https://t.me/AleksanderRefresher", icon: TelegramIcon},
@@ -60,8 +60,8 @@ function App() {
                         />
                         <TeacherCard
                             name={["Эльвира","Минько"]}
-                            subtitle={"14-6 "}
-                            description={["Backend-разработчик в Видком","КТ ИТМО "]}
+                            subtitle={"15-6 "}
+                            description={["Frontend-разработчик в YADRO","КТ ИТМО"]}
                             links={[
                                 {title: "Telegram", link: "https://t.me/elvmin", icon: TelegramIcon},
                             ]}
