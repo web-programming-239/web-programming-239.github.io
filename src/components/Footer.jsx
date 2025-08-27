@@ -7,7 +7,7 @@ export default function Footer() {
         if (el) {
             el.scrollIntoView({
                 behavior: "smooth",
-                block: "center", // центрируем секцию
+                block: "start", // центрируем секцию
             });
         }
     };

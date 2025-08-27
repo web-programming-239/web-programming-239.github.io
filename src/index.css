@@ -8,11 +8,16 @@
     :root{
         --spacing: 0.15rem
     }
+    .h-\[100px\] {
+        height: 200px;
+    }
 }
 
 @media (max-width: 600px) {
     :root{
-        --text-7xl: 3.2rem;
+        --text-7xl: 2.8rem;
+        --text-6xl: 2.5rem;
     }
+
 }
 

@@ -7,7 +7,7 @@ export default function HeaderNav() {
         if (el) {
             el.scrollIntoView({
                 behavior: "smooth",
-                block: "center", // центрируем секцию по экрану
+                block: "start", // центрируем секцию по экрану
             });
         }
     };
