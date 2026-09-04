@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import {AnimatePresence, motion} from "framer-motion";
+import {AnimatePresence, motion as Motion} from "framer-motion";
 
 const PROGRAMS = [{
-    key: "frontend", label: "Frontend и дизайн", about: "Курс для 9-11 классов. Занятия по субботам, продолжительность 3 часа. Работаем в формате мини-лекции + практика: сначала короткое объяснение, затем самостоятельная реализация под руководством преподавателя. По итогу — проект интерфейса мессенджера с подключением к бэкенду."
+    key: "frontend", label: "Frontend и дизайн", shortLabel: "Frontend", about: "Курс для 9-11 классов. Занятия по субботам, продолжительность 3 часа. Работаем в формате мини-лекции + практика: сначала короткое объяснение, затем самостоятельная реализация под руководством преподавателя. По итогу — проект интерфейса мессенджера с подключением к бэкенду."
 }, {
-    key: "algorithms", label: "Алгоритмы (5‑6 класс)", about: "Курс для 5-6 классов. Занятия по четвергам и субботам 1.5 часа. Каждое занятие — понятные примеры на Python, затем задачи и мини-проекты-игры. Регулярно закрепляем материал и учимся объяснять решения."
+    key: "algorithms", label: "Алгоритмы (5‑6 класс)", shortLabel: "Алгоритмы", about: "Курс для 5-6 классов. Занятия по четвергам и субботам 1.5 часа. Каждое занятие — понятные примеры на Python, затем задачи и мини-проекты-игры. Регулярно закрепляем материал и учимся объяснять решения."
 }, {
-    key: "python", label: "Web на Python", about: "Курс для 9-11 классов. Занятия по понедельникам, продолжительность 3 часа. Формат: короткая теория + разбор кода + практика. Собираем полноценный веб-проект на Flask/React с базой данных, деплоем и минимальными тестами."
+    key: "python", label: "Продуктовая разработка", shortLabel: "Продуктовая", about: "Курс для 9-11 классов. Занятия по понедельникам, продолжительность 3 часа. Формат: короткая теория + разбор кода + практика. Собираем полноценный веб-проект на FastAPI/React с базой данных, деплоем и AI-инструментами."
 },];
 
 const data = {
@@ -67,7 +67,7 @@ const data = {
         }, {
             q: "3. HTTP и сети", a: "Разберете, как работает обмен данными через интернет. Напишете простые запросы и научитесь отправлять и получать JSON от сервера."
         }, {
-            q: "4. Flask: старт", a: "Напишете свой первый сервер на Flask. Реализуете маршруты, вернете страницу пользователю и подключите фронтенд к бэкенду."
+            q: "4. FastAPI: старт", a: "Напишете свой первый API на FastAPI. Реализуете маршруты, настроите валидацию данных и подключите React-фронтенд к бэкенду."
         }, {
             q: "5. React углубление", a: "Продвинетесь в React: соберете приложение с несколькими страницами, подключите Redux и React-Bootstrap для управления состоянием и внешнего вида."
         }], right: [{
@@ -79,125 +79,137 @@ const data = {
         }, {
             q: "9. Деплой", a: "Развернете проект на сервере или в Render. Настроите переменные окружения и проверите работу сайта в интернете."
         }, {
-            q: "10. Тесты", a: "Напишете тесты с Pytest, чтобы убедиться, что ваш сервер отвечает правильно. Протестируете регистрацию, вход и основные эндпойнты."
+            q: "10. AI-агенты", a: "Познакомитесь с устройством AI-агентов: подключите языковую модель через API, добавите инструменты и соберёте агента, который умеет выполнять несколько связанных действий внутри проекта."
         }]
     },
 };
 
 
-function ToggleMenu({value, onChange}) {
-    return (<div className="relative inline-flex p-1 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-        {PROGRAMS.map((p) => {
-            const active = value === p.key;
-            return (<button
-                key={p.key}
-                type="button"
-                onClick={() => onChange(p.key)}
-                className={`cursor-pointer relative z-10 px-4 py-2 rounded-xl text-sm font-ibm transition-[color,opacity] ${active ? "text-[#010604]" : "text-white/80 hover:text-white"}`}
+function ToggleMenu({ value, onChange }) {
+    return (
+        <div className="w-full">
+            <div
+                className="mx-auto flex w-full max-w-[760px] gap-1 rounded-2xl border border-current/20 bg-white/10 p-1 backdrop-blur-sm"
+                role="tablist"
+                aria-label="Выберите направление"
             >
-                {p.label}
-                {active && (<motion.span
-                    layoutId="toggle-pill"
-                    className="absolute inset-0 -z-10 rounded-xl bg-white"
-                    transition={{type: "spring", stiffness: 400, damping: 30}}
-                />)}
-            </button>);
-        })}
-    </div>);
-}
-
-function QAItem({q, a}) {
-    const [open, setOpen] = useState(false);
-    return (<div className="self-stretch flex flex-col justify-start items-start border-t border-white/20">
-        <button
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            className="cursor-pointer w-full py-5 inline-flex justify-between items-center gap-6 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-        >
-            <div className="flex-1 text-white text-lg font-bold leading-[27px] font-ibm text-left">{q}</div>
-            <motion.div
-                animate={{rotate: open ? 180 : 0}}
-                transition={{type: "spring", stiffness: 300, damping: 24}}
-                className="w-6 h-6 flex justify-center items-center"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M7.08691 9.02344C7.18774 9.02344 7.26471 9.05385 7.34277 9.13184L11.6455 13.459L11.999 13.8145L16.6816 9.13184C16.7593 9.05424 16.8257 9.03227 16.9062 9.03516C17.0005 9.0386 17.0819 9.07117 17.168 9.15723C17.246 9.23531 17.2764 9.31223 17.2764 9.41309C17.2763 9.51371 17.2458 9.59001 17.168 9.66797L12.249 14.5869C12.1949 14.6411 12.1522 14.667 12.124 14.6787C12.0885 14.6935 12.0486 14.7021 12 14.7021C11.9755 14.7021 11.9532 14.6993 11.9326 14.6953L11.875 14.6787L11.8223 14.6484C11.8015 14.634 11.7779 14.6138 11.751 14.5869L6.80664 9.64355C6.7328 9.56972 6.70662 9.50009 6.70996 9.40527C6.71375 9.29797 6.74977 9.2141 6.83203 9.13184C6.90996 9.05403 6.98632 9.02351 7.08691 9.02344Z"
-                        fill="#ffffff" stroke="#ffffff"
-                    />
-                </svg>
-            </motion.div>
-        </button>
-
-        <AnimatePresence initial={false}>
-            {open && (<motion.div
-                initial={{height: 0, opacity: 0}}
-                animate={{height: "auto", opacity: 1}}
-                exit={{height: 0, opacity: 0}}
-                transition={{duration: 0.25, ease: "easeInOut"}}
-                className="self-stretch overflow-hidden"
-            >
-                <p className="flex-1 pb-6 text-white text-base font-normal leading-normal font-ibm">{a}</p>
-            </motion.div>)}
-        </AnimatePresence>
-    </div>);
-}
-
-function Column({items}) {
-    return (<div className="min-w-[300px] flex-1 border-b border-white/20 inline-flex flex-col justify-start items-start">
-        {items.map((item) => (<QAItem key={item.q} q={item.q} a={item.a}/>))}
-    </div>);
-}
-
-export default function FAQ() {
-    const [program, setProgram] = useState(PROGRAMS[0].key);
-    const current = data[program];
-
-    return (<section id="clubs" className="w-full px-16 py-28 bg-[#0b4e59] flex flex-col justify-start items-center gap-12 overflow-hidden">
-        <div className="w-full max-w-[1280px] flex flex-col justify-start items-center gap-10">
-            {/* ToggleMenu on top */}
-            <ToggleMenu value={program} onChange={setProgram}/>
-
-            <div className="w-full max-w-[768px] flex flex-col justify-start items-center gap-6">
-                <h2 className="self-stretch text-center text-white text-[52px] font-normal leading-[62.40px] font-source">
-                    {PROGRAMS.find((p) => p.key === program)?.label}
-                </h2>
-                <p className="self-stretch text-center text-white text-lg font-normal leading-[27px] font-ibm">
-                    {PROGRAMS.find((p) => p.key === program)?.about}
-                </p>
-            </div>
-
-            <div className="self-stretch inline-flex justify-start items-start gap-x-16 w-full flex-wrap">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={`${program}-left`}
-                        initial={{opacity: 0, y: 6}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: -6}}
-                        transition={{duration: 0.2}}
-                        className="flex-1 self-stretch inline-flex justify-start items-start"
-                    >
-                        <Column items={current.left}/>
-                    </motion.div>
-                </AnimatePresence>
-
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={`${program}-right`}
-                        initial={{opacity: 0, y: 6}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: -6}}
-                        transition={{duration: 0.2}}
-                        className="flex-1 self-stretch inline-flex justify-start items-start"
-                    >
-                        <Column items={current.right}/>
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-            <div className="w-full max-w-[560px] flex flex-col justify-start items-center gap-6">
-                <div className="self-stretch h-[27px]"/>
+                {PROGRAMS.map((item) => {
+                    const active = value === item.key;
+                    return (
+                        <button
+                            key={item.key}
+                            type="button"
+                            role="tab"
+                            aria-selected={active}
+                            onClick={() => onChange(item.key)}
+                            className="type-caption relative min-h-11 min-w-0 flex-1 whitespace-nowrap rounded-xl px-1 py-2.5 font-ibm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current sm:px-5"
+                            style={{ color: active ? "#010604" : "inherit" }}
+                        >
+                            <span className="relative z-10">{item.shortLabel}</span>
+                            {active && (
+                                <Motion.span
+                                    layoutId="toggle-pill"
+                                    className="absolute inset-0 rounded-xl bg-white"
+                                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                                />
+                            )}
+                        </button>
+                    );
+                })}
             </div>
         </div>
-    </section>);
+    );
+}
+
+function QAItem({ q, a }) {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div className="border-t border-current/20">
+            <button
+                type="button"
+                onClick={() => setOpen(!open)}
+                aria-expanded={open}
+                className="flex min-h-16 w-full items-center justify-between gap-5 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current"
+            >
+                <span className="type-body flex-1 font-ibm font-bold">{q}</span>
+                <Motion.span
+                    animate={{ rotate: open ? 180 : 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                    className="flex h-6 w-6 shrink-0 items-center justify-center"
+                    aria-hidden="true"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M7.08691 9.02344C7.18774 9.02344 7.26471 9.05385 7.34277 9.13184L11.6455 13.459L11.999 13.8145L16.6816 9.13184C16.7593 9.05424 16.8257 9.03227 16.9062 9.03516C17.0005 9.0386 17.0819 9.07117 17.168 9.15723C17.246 9.23531 17.2764 9.31223 17.2764 9.41309C17.2763 9.51371 17.2458 9.59001 17.168 9.66797L12.249 14.5869C12.1949 14.6411 12.1522 14.667 12.124 14.6787C12.0885 14.6935 12.0486 14.7021 12 14.7021C11.9755 14.7021 11.9532 14.6993 11.9326 14.6953L11.875 14.6787L11.8223 14.6484C11.8015 14.634 11.7779 14.6138 11.751 14.5869L6.80664 9.64355C6.7328 9.56972 6.70662 9.50009 6.70996 9.40527C6.71375 9.29797 6.74977 9.2141 6.83203 9.13184C6.90996 9.05403 6.98632 9.02351 7.08691 9.02344Z"
+                            fill="currentColor"
+                            stroke="currentColor"
+                        />
+                    </svg>
+                </Motion.span>
+            </button>
+
+            <AnimatePresence initial={false}>
+                {open && (
+                    <Motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                    >
+                        <p className="type-body pb-6 font-ibm font-normal opacity-80">{a}</p>
+                    </Motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+}
+
+function Column({ items }) {
+    return (
+        <div className="min-w-0 border-b border-current/20">
+            {items.map((item) => <QAItem key={item.q} q={item.q} a={item.a} />)}
+        </div>
+    );
+}
+
+export default function FAQ({ program, onProgramChange }) {
+    const current = data[program];
+    const selected = PROGRAMS.find((item) => item.key === program);
+
+    return (
+        <section
+            id="clubs"
+            className="w-full overflow-hidden py-20 transition-colors duration-500 sm:py-28"
+            style={{ backgroundColor: "var(--theme-dark)", color: "var(--theme-on-dark)" }}
+        >
+            <div className="page-shell flex flex-col items-center gap-10">
+                <ToggleMenu value={program} onChange={onProgramChange} />
+
+                <div className="flex w-full max-w-[768px] flex-col items-center gap-6 text-center">
+                    <h2 className="type-section font-source font-normal">
+                        {selected.label}
+                    </h2>
+                    <p className="type-lead font-ibm font-normal opacity-85">
+                        {selected.about}
+                    </p>
+                </div>
+
+                <AnimatePresence mode="wait">
+                    <Motion.div
+                        key={program}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.2 }}
+                        className="grid w-full gap-x-16 md:grid-cols-2"
+                    >
+                        <Column items={current.left} />
+                        <Column items={current.right} />
+                    </Motion.div>
+                </AnimatePresence>
+            </div>
+        </section>
+    );
 }

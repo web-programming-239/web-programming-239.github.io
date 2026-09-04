@@ -1,79 +1,127 @@
 import React from "react";
-import Button from "./Button.jsx";
-
+import { ENROLL_URL } from "../constants.js";
 
 const steps = [
     {
+        icon: "calendar",
         title: "Ярмарка кружков",
-        text: "6 сентября в лицее 239 (младший корпус) пройдет ярмарка кружков. Здесь вы сможете встретиться с преподавателями лично, задать вопросы и узнать всё о наших программах"
+        date: "6 сентября",
+        text: "в лицее 239 (младший корпус) пройдет ярмарка кружков. Здесь вы сможете встретиться с преподавателями лично, задать вопросы и узнать всё о наших программах"
     },
     {
+        icon: "clipboard",
         title: "Вступительный тест",
-        text: "До 12 сентября необходимо пройти онлайн-тестирование. Это поможет сформировать группы и подобрать уровень занятий для каждого"
+        date: "До 12 сентября",
+        text: "необходимо пройти онлайн-тестирование. Это поможет сформировать группы и подобрать уровень занятий для каждого"
     },
     {
+        icon: "list",
         title: "Результаты отбора",
-        text: "13 сентября мы опубликуем итоги вступительного испытания и списки групп. Следите за обновлениями — совсем скоро вы узнаете свой формат обучения"
+        date: "13 сентября",
+        text: "мы опубликуем итоги вступительного испытания и списки групп. Следите за обновлениями — совсем скоро вы узнаете свой формат обучения"
     },
     {
+        icon: "check",
         title: "Старт занятий",
-        text: "С 15 сентября начинаются первые уроки по расписанию. Ждём всех и желаем успехов на старте вашего пути в программировании", tall: false
+        date: "С 15 сентября",
+        text: "начинаются первые уроки по расписанию. Ждём всех и желаем успехов на старте вашего пути в программировании"
     }
 ];
 
+function TimelineGlyph({ type }) {
+    const common = {
+        width: 24,
+        height: 24,
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: 1.8,
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        "aria-hidden": true,
+    };
 
+    if (type === "calendar") {
+        return (
+            <svg {...common}>
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M16 3v4M8 3v4M3 10h18" />
+                <path d="m8.5 15 2 2 4-4" />
+            </svg>
+        );
+    }
 
-function StepIcon({withDivider = true, tall = false}) {
+    if (type === "clipboard") {
+        return (
+            <svg {...common}>
+                <path d="M9 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3" />
+                <rect x="9" y="3" width="6" height="4" rx="1" />
+                <path d="m9 14 2 2 4-4" />
+            </svg>
+        );
+    }
+
+    if (type === "list") {
+        return (
+            <svg {...common}>
+                <path d="m4 6 1.4 1.4L8 4.8M11 6h9" />
+                <path d="m4 12 1.4 1.4L8 10.8M11 12h9" />
+                <path d="m4 18 1.4 1.4L8 16.8M11 18h9" />
+            </svg>
+        );
+    }
+
     return (
-        <div className={`${tall ? "h-[204px]" : ""} inline-flex flex-col justify-start items-center gap-4`}>
-            <div className="w-12 h-12 relative flex justify-center items-center">
-                {withDivider ? <svg xmlns="http://www.w3.org/2000/svg" width="40" height="25" viewBox="0 0 40 25" fill="none">
-                        <path
-                            d="M4.61244 12.6244L13.2689 21.2809C13.6086 21.6289 13.7681 22.0287 13.7474 22.4804C13.7268 22.9321 13.5446 23.3319 13.2009 23.6799C12.8569 24.0276 12.4508 24.1994 11.9824 24.1954C11.5141 24.1917 11.1099 24.0199 10.7699 23.6799L0.919938 13.8419C0.737938 13.6579 0.605438 13.4666 0.522438 13.2679C0.439771 13.0689 0.398438 12.8579 0.398438 12.6349C0.398438 12.4119 0.439771 12.2014 0.522438 12.0034C0.605438 11.8051 0.737938 11.6142 0.919938 11.4309L10.9199 1.43089C11.2629 1.09122 11.6699 0.921387 12.1409 0.921387C12.6116 0.921387 13.0169 1.09122 13.3569 1.43089C13.6966 1.77089 13.8664 2.17822 13.8664 2.65289C13.8664 3.12789 13.6966 3.53689 13.3569 3.87989L4.61244 12.6244ZM35.6894 12.6484L27.0329 3.99189C26.6853 3.64389 26.5218 3.24405 26.5424 2.79239C26.5631 2.34072 26.7453 1.94089 27.0889 1.59289C27.4329 1.24522 27.8391 1.07339 28.3074 1.07739C28.7758 1.08105 29.1799 1.25289 29.5199 1.59289L39.3699 11.4309C39.5519 11.6149 39.6844 11.8062 39.7674 12.0049C39.8501 12.2039 39.8914 12.4149 39.8914 12.6379C39.8914 12.8609 39.8501 13.0714 39.7674 13.2694C39.6844 13.4677 39.5519 13.6586 39.3699 13.8419L29.3699 23.8419C29.0293 24.1816 28.6313 24.3451 28.1759 24.3324C27.7206 24.3197 27.3229 24.1396 26.9829 23.7919C26.6353 23.4509 26.4614 23.0444 26.4614 22.5724C26.4614 22.1007 26.6353 21.6949 26.9829 21.3549L35.6894 12.6484Z"
-                            fill="#E8F9FB"/>
-                    </svg>
-                    :
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none">
-                        <path d="M19.0635 6.79785C19.1627 6.79788 19.2389 6.82834 19.3174 6.90723C19.396 6.98628 19.4267 7.06364 19.4268 7.16504C19.4268 7.26621 19.3965 7.34439 19.3184 7.42383L9.7002 17.0352C9.618 17.1167 9.54201 17.1455 9.44922 17.1455C9.35658 17.1455 9.28147 17.1173 9.20117 17.0371L4.66602 12.502C4.58904 12.4238 4.56097 12.3493 4.56348 12.252C4.56631 12.1459 4.60105 12.0636 4.68262 11.9824C4.76168 11.9038 4.83902 11.8731 4.94043 11.873C5.01685 11.873 5.08003 11.8905 5.14062 11.9326L5.20117 11.9834L9.0957 15.8965L9.44922 16.252L9.80371 15.8975L18.7959 6.91113C18.8809 6.82853 18.9627 6.79785 19.0635 6.79785Z" fill="#E8F9FB" stroke="#E8F9FB"/>
-                    </svg>
-                }
+        <svg {...common}>
+            <circle cx="12" cy="12" r="9" />
+            <path d="m8.5 12 2.2 2.2 4.8-4.8" />
+        </svg>
+    );
+}
+
+function StepIcon({ type, withDivider }) {
+    return (
+        <div className="flex h-full flex-col items-center">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10">
+                <TimelineGlyph type={type} />
             </div>
-            {withDivider && (
-                <div className="h-[100px] w-0 origin-top-left  bg-white/20 outline-2 outline-offset-[-1px] outline-white/20"></div>
-            )}
+            {withDivider && <div className="mt-3 min-h-16 w-px flex-1 bg-current opacity-20" />}
         </div>
     );
 }
 
-
 export default function TimeLine() {
     return (
-        <section id="enroll" className="w-full px-16 py-28 bg-[#0b4e59] flex flex-col justify-start items-center gap-20 overflow-hidden">
-            <div className="w-full max-w-[1280px] flex flex-col justify-start items-start gap-20">
-                <div className="self-stretch inline-flex justify-start items-start gap-20 flex-wrap">
-                    <div className="flex-1 inline-flex flex-col justify-start items-start gap-8">
-                        <div className="self-stretch flex flex-col justify-start items-start gap-4">
-                            <h2 className="self-stretch text-white text-[52px] font-normal leading-[62.40px] font-source">
-                               Как к нам попасть?
-                            </h2>
-                        </div>
-                        <div className="inline-flex justify-start items-center gap-6">
-                            <a href="https://t.me/+fNRp_Y1MoXE3MjUy">
-                            <Button variant="primary">
-                                <span className="text-white font-ibm">Записаться</span>
-                            </Button>
+        <section
+            id="enroll"
+            className="flex w-full flex-col items-center overflow-hidden py-20 transition-colors duration-500 sm:py-28"
+            style={{ backgroundColor: "var(--theme-dark)", color: "var(--theme-on-dark)" }}
+        >
+            <div className="page-shell">
+                <div className="grid gap-14 lg:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+                    <div>
+                        <h2 className="type-section font-source font-normal">Как к нам попасть?</h2>
+                        <a
+                            href={ENROLL_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="type-lead mt-7 inline-flex min-h-14 w-full items-center justify-center rounded-xl px-8 py-3.5 font-ibm font-semibold transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/35 sm:w-auto"
+                            style={{ backgroundColor: "var(--theme-on-dark)", color: "var(--theme-dark)" }}
+                        >
+                            Вступить в группу
                         </a>
-                        </div>
                     </div>
 
-
-                    <div className="flex-1 inline-flex flex-col justify-start items-start gap-4">
-                        {steps.map((s) => (
-                            <div key={s.title} className="self-stretch inline-flex justify-start items-start gap-10">
-                                <StepIcon withDivider={s.tall}/>
-                                <div className="flex-1 inline-flex flex-col justify-start items-start gap-4">
-                                    <div className="self-stretch text-white text-[22px] font-normal leading-[30.80px] font-source">{s.title}</div>
-                                    <div className="self-stretch text-white text-base font-normal leading-normal font-ibm">{s.text}</div>
+                    <div>
+                        {steps.map((step, index) => (
+                            <div key={step.title} className="grid grid-cols-[48px_minmax(0,1fr)] gap-6 sm:gap-8">
+                                <StepIcon type={step.icon} withDivider={index < steps.length - 1} />
+                                <div className={index < steps.length - 1 ? "pb-10" : ""}>
+                                    <h3 className="type-title font-source font-normal">{step.title}</h3>
+                                    <p className="type-body mt-2 font-ibm font-normal">
+                                        <strong className="font-bold text-white">{step.date}</strong>{" "}
+                                        <span className="opacity-75">{step.text}</span>
+                                    </p>
                                 </div>
                             </div>
                         ))}

@@ -7,7 +7,7 @@ export default function Button({
                                    className = "",
                                }) {
     const base =
-        "cursor-pointer px-6 py-2.5 rounded-xl flex justify-center items-center gap-2 font-ibm text-base font-medium transition-all duration-200 ease-in-out";
+        "type-body cursor-pointer px-6 py-2.5 rounded-xl flex justify-center items-center gap-2 font-ibm font-medium transition-all duration-200 ease-in-out";
 
     const variants = {
         secondary:

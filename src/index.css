@@ -1,23 +1,103 @@
 @import "tailwindcss";
 
-:root, body {
+:root {
+    color: #111817;
+    background: #ffffff;
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --type-display: clamp(2.875rem, calc(2.2rem + 3vw), 4.5rem);
+    --type-section: clamp(2.5rem, calc(2.15rem + 1.5vw), 3.25rem);
+    --type-title: 1.375rem;
+    --type-lead: 1.125rem;
+    --type-body: 1rem;
+    --type-caption: 0.875rem;
 }
 
-@media (max-width: 1000px) {
-    :root{
-        --spacing: 0.15rem
-    }
-    .h-\[100px\] {
-        height: 200px;
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: #ffffff;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+button {
+    font: inherit;
+}
+
+.page-shell {
+    width: min(100% - 2.5rem, 1180px);
+    margin-inline: auto;
+}
+
+.type-display {
+    font-size: var(--type-display);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+}
+
+.type-section {
+    font-size: var(--type-section);
+    line-height: 1.05;
+}
+
+.type-title {
+    font-size: var(--type-title);
+    line-height: 1.4;
+}
+
+.type-lead {
+    font-size: var(--type-lead);
+    line-height: 1.65;
+}
+
+.type-body {
+    font-size: var(--type-body);
+    line-height: 1.5;
+}
+
+.type-caption {
+    font-size: var(--type-caption);
+    line-height: 1.45;
+}
+
+@media (min-width: 640px) {
+    .page-shell {
+        width: min(100% - 4rem, 1180px);
     }
 }
 
-@media (max-width: 600px) {
-    :root{
-        --text-7xl: 2.8rem;
-        --text-6xl: 2.5rem;
+@media (min-width: 1024px) {
+    .page-shell {
+        width: min(100% - 8rem, 1180px);
     }
-
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
